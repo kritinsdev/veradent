@@ -19,6 +19,8 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Carbon;
@@ -95,15 +97,15 @@ class TaskResource extends Resource
                                                     $label .= Type::from($state['type'])->getLabel();
                                                 }
 
-                                                if(!empty($state['teeth_position'])) {
+                                                if (!empty($state['teeth_position'])) {
                                                     $label .= ' / ' . 'B12';
                                                 }
 
-                                                if(!empty($state['material'])) {
+                                                if (!empty($state['material'])) {
                                                     $label .= ' / ' . Material::from($state['material'])->getLabel();
                                                 }
 
-                                                if(
+                                                if (
                                                     !empty($state['type']) &&
                                                     !empty($state['teeth_position']) &&
                                                     !empty($state['material'])
@@ -131,7 +133,7 @@ class TaskResource extends Resource
                                     ->maxValue(2)
                                     ->step(1)
                                     ->reactive()
-                                    ->hidden(fn(Get $get): bool =>  !empty($get('3d_models')))
+                                    ->hidden(fn(Get $get): bool => !empty($get('3d_models')))
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         if ($get('scan_models') > 0) {
                                             $set('3d_models', null);
@@ -146,7 +148,7 @@ class TaskResource extends Resource
                                     ->minValue(0)
                                     ->step(1)
                                     ->reactive()
-                                    ->hidden(fn(Get $get): bool =>  !empty($get('scan_models')))
+                                    ->hidden(fn(Get $get): bool => !empty($get('scan_models')))
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         if ($get('3d_models') > 0) {
                                             $set('scan_models', null);
@@ -200,6 +202,18 @@ class TaskResource extends Resource
 
             ])
             ->actions([
+                Action::make('viewSections')
+                    ->label('Apskatīt')
+                    ->icon('heroicon-o-eye')
+                    ->action(function ($record, $livewire) {
+                        $livewire->emit('openSectionsModal', $record->sections);
+                    })
+                    ->modalHeading('Paveiktie darbi')
+                    ->modalWidth('lg')
+                    ->modalContent(function ($record) {
+                        return view('task-resource.sections-view', ['sections' => $record->sections]);
+                    }),
+
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

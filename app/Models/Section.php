@@ -5,14 +5,13 @@ namespace App\Models;
 use App\Enums\Color;
 use App\Enums\Material;
 use App\Enums\TeethPosition;
+use App\Enums\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Section extends Model
 {
-    use HasFactory;
-
     public $timestamps = false;
 
     protected $fillable = [
@@ -25,6 +24,7 @@ class Section extends Model
     ];
 
     protected $casts = [
+        'type' => Type::class,
         'teeth_position' => TeethPosition::class,
         'material' => Material::class,
     ];
