@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Task extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'doctor_id',
         'patient_name',
@@ -48,7 +46,7 @@ class Task extends Model
         $this->attributes['scan_models'] = $value;
         if ($value > 0) {
             $this->attributes['3d_models'] = 0;
-            $this->attributes['3d_models_full'] = 0;
+            $this->attributes['3d_models_full'] = false;
         }
     }
 }
