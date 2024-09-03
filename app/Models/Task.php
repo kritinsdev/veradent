@@ -21,6 +21,10 @@ class Task extends Model
         'total_price',
     ];
 
+    protected $casts = [
+        '3d_models_full' => 'boolean',
+    ];
+
     public function doctor(): BelongsTo
     {
         return $this->belongsTo(Doctor::class);
