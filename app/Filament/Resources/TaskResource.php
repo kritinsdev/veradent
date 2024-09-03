@@ -200,6 +200,8 @@ class TaskResource extends Resource
                         return Carbon::parse($state)->format('d/m/Y');
                     }),
             ])
+            ->paginated([100, 200, 500, 'all'])
+            ->defaultPaginationPageOption(100)
             ->filters([
 
             ])
