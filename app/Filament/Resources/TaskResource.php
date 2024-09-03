@@ -162,7 +162,6 @@ class TaskResource extends Resource
                                     ->reactive()
                                     ->hidden(fn(Get $get): bool => $get('3d_models') == 0)
                                     ->dehydrated(fn(Get $get): bool => $get('3d_models') > 0)
-                                    ->required(fn(Get $get): bool => $get('3d_models') > 0)
                                     ->afterStateUpdated(fn(Get $get, Set $set) => static::calculateTotalPrice($get, $set)),
                                 TextInput::make('total_price')
                                     ->label('Samaksa')
