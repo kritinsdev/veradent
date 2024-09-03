@@ -133,11 +133,12 @@ class TaskResource extends Resource
                                     ->maxValue(2)
                                     ->step(1)
                                     ->reactive()
-                                    ->hidden(fn(Get $get): bool => !empty($get('3d_models')))
+                                    ->default(0)
+                                    ->visible(fn(Get $get): bool => empty($get('3d_models')))
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         if ($get('scan_models') > 0) {
-                                            $set('3d_models', null);
-                                            $set('3d_models_full', null);
+                                            $set('3d_models', 0);
+                                            $set('3d_models_full', false);
                                         }
                                         static::calculateTotalPrice($get, $set);
                                     }),
@@ -148,19 +149,21 @@ class TaskResource extends Resource
                                     ->minValue(0)
                                     ->step(1)
                                     ->reactive()
-                                    ->hidden(fn(Get $get): bool => !empty($get('scan_models')))
+                                    ->default(0)
+                                    ->visible(fn(Get $get): bool => empty($get('scan_models')))
+                                    ->dehydrated()
                                     ->afterStateUpdated(function (Get $get, Set $set) {
                                         if ($get('3d_models') > 0) {
-                                            $set('scan_models', null);
+                                            $set('scan_models', 0);
                                         } elseif ($get('3d_models') == 0) {
-                                            $set('3d_models_full', null);
+                                            $set('3d_models_full', false);
                                         }
                                         static::calculateTotalPrice($get, $set);
                                     }),
                                 Toggle::make('3d_models_full')
                                     ->label('Pilns 3D modelis')
                                     ->reactive()
-                                    ->hidden(fn(Get $get): bool => $get('3d_models') == 0)
+                                    ->visible(fn(Get $get): bool => $get('3d_models') != 0)
                                     ->dehydrated(fn(Get $get): bool => $get('3d_models') > 0)
                                     ->afterStateUpdated(fn(Get $get, Set $set) => static::calculateTotalPrice($get, $set)),
                                 TextInput::make('total_price')

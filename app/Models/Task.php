@@ -34,4 +34,21 @@ class Task extends Model
     {
         return $this->hasMany(Section::class);
     }
+
+    public function set3dModelsAttribute($value): void
+    {
+        $this->attributes['3d_models'] = $value;
+        if ($value > 0) {
+            $this->attributes['scan_models'] = 0;
+        }
+    }
+
+    public function setScanModelsAttribute($value): void
+    {
+        $this->attributes['scan_models'] = $value;
+        if ($value > 0) {
+            $this->attributes['3d_models'] = 0;
+            $this->attributes['3d_models_full'] = 0;
+        }
+    }
 }
