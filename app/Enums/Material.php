@@ -6,11 +6,11 @@ use Filament\Support\Contracts\HasLabel;
 
 enum Material: string implements HasLabel
 {
-    case METAL = 'Metal';
-    case ZIRCONIA = 'Zirconia';
+    case METAL = 'METAL';
+    case ZIRCONIA = 'ZIRCONIA';
     case EMAX = 'EMAX';
     case PMMA = 'PMMA';
-    case PROTOTYPE = 'Prototype';
+    case PROTOTYPE = 'PROTOTYPE';
 
     public function getLabel(): ?string
     {

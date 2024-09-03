@@ -52,8 +52,7 @@ class TaskResource extends Resource
                                         TextInput::make('patient_name')
                                             ->label('Pacients'),
                                         TextInput::make('color')
-                                            ->label('Krāsa')
-                                            ->required(),
+                                            ->label('Krāsa'),
                                     ]),
                             ])
                             ->columnSpan(3),
@@ -71,6 +70,7 @@ class TaskResource extends Resource
                                                         Select::make('type')
                                                             ->label('Tips')
                                                             ->options(Type::class)
+                                                            ->extraInputAttributes(['class' => 'teeth-type'])
                                                             ->reactive()
                                                             ->afterStateUpdated(function (Get $get, Set $set) {
                                                                 static::calculateTotalPrice($get, $set);
@@ -80,16 +80,18 @@ class TaskResource extends Resource
                                                         Select::make('teeth_position')
                                                             ->label('Zobs')
                                                             ->options(TeethPosition::class)
+                                                            ->extraInputAttributes(['class' => 'teeth-position'])
                                                             ->required(),
                                                         Select::make('material')
                                                             ->label('Matereāls')
+                                                            ->extraInputAttributes(['class' => 'teeth-material'])
                                                             ->options(Material::class)
                                                             ->required(),
                                                     ])
                                             ])
                                             ->grid(1)
                                             ->collapsed()
-                                            ->defaultItems(1)
+                                            ->defaultItems(0)
                                             ->itemLabel(function (array $state) {
                                                 $label = '';
 
@@ -98,7 +100,7 @@ class TaskResource extends Resource
                                                 }
 
                                                 if (!empty($state['teeth_position'])) {
-                                                    $label .= ' / ' . 'B12';
+                                                    $label .= ' / ' . TeethPosition::from($state['teeth_position'])->getLabel();
                                                 }
 
                                                 if (!empty($state['material'])) {

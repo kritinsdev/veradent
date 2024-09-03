@@ -1,0 +1,113 @@
+.teeth-position option {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.teeth-position,
+.teeth-type,
+.teeth-material{
+    border-radius: 8px;
+}
+
+.teeth-position option[value="D_11"],
+.teeth-position option[value="D_12"],
+.teeth-position option[value="D_13"],
+.teeth-position option[value="D_14"],
+.teeth-position option[value="D_15"],
+.teeth-position option[value="D_16"],
+.teeth-position option[value="D_17"],
+.teeth-position option[value="D_18"] {
+    background-color: #FFE9D0 !important;
+}
+
+.teeth-position option[value="D_21"],
+.teeth-position option[value="D_22"],
+.teeth-position option[value="D_23"],
+.teeth-position option[value="D_24"],
+.teeth-position option[value="D_25"],
+.teeth-position option[value="D_26"],
+.teeth-position option[value="D_27"],
+.teeth-position option[value="D_28"] {
+    background-color: #FFFED3 !important;
+}
+
+.teeth-position option[value="D_31"],
+.teeth-position option[value="D_32"],
+.teeth-position option[value="D_33"],
+.teeth-position option[value="D_34"],
+.teeth-position option[value="D_35"],
+.teeth-position option[value="D_36"],
+.teeth-position option[value="D_37"],
+.teeth-position option[value="D_38"] {
+    background-color: #BBE9FF !important;
+}
+
+.teeth-position option[value="D_41"],
+.teeth-position option[value="D_42"],
+.teeth-position option[value="D_43"],
+.teeth-position option[value="D_44"],
+.teeth-position option[value="D_45"],
+.teeth-position option[value="D_46"],
+.teeth-position option[value="D_47"],
+.teeth-position option[value="D_48"] {
+    background-color: #B1AFFF !important;
+}
+
+.teeth-type option {
+    font-size: 16px;
+}
+
+.teeth-type option:focus {
+
+}
+
+.teeth-type option[value="FULL_FORM_IMPLANT"] {
+    background-color: #0ad2ff;
+}
+.teeth-type option[value="FULL_FORM_NO_IMPLANT"] {
+    background-color: #2962ff;
+    color:white;
+}
+.teeth-type option[value="REDUCED_FORM_IMPLANT"] {
+    background-color: #9500ff;
+    color:white;
+}
+.teeth-type option[value="REDUCED_FORM_NO_IMPLANT"] {
+    background-color: #ff0059;
+    color:white;
+}
+.teeth-type option[value="WAX_UP"] {
+    background-color: #ff8c00;
+}
+.teeth-type option[value="ONLAY"] {
+    background-color: #b4e600;
+}
+.teeth-type option[value="PROTOTYPE"] {
+    background-color: #0fffdb;
+}
+
+
+.teeth-material option[value="METAL"] {
+    background-color: #4A4E69;
+    color:white;
+}
+
+.teeth-material option[value="ZIRCONIA"] {
+    background-color: #F2E9E4;
+}
+
+.teeth-material option[value="EMAX"] {
+    background-color: #e9ecef;
+}
+
+.teeth-material option[value="PMMA"] {
+    background-color: #C9ADA7;
+}
+
+.teeth-material option[value="PROTOTYPE"] {
+    background-color: #9A8C98;
+}
+
+.zirconia-class {
+    background-color: red!important;
+}
