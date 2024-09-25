@@ -73,16 +73,16 @@ class TaskResource extends Resource
                                                             ->extraInputAttributes(
                                                                 [
                                                                     'class' => 'teeth-type',
-                                                                    'id' => 'your-select-element-id'
+                                                                    // 'id' => 'your-select-element-id'
                                                                 ]
                                                             )
                                                             ->reactive()
                                                             ->afterStateUpdated(function (Get $get, Set $set, $livewire) {
                                                                 static::calculateTotalPrice($get, $set);
 
-                                                                $livewire->dispatch('select-updated', [
-                                                                    'selectId' => 'your-select-element-id',
-                                                                ]);
+                                                                // $livewire->dispatch('select-updated', [
+                                                                //     'selectId' => 'your-select-element-id',
+                                                                // ]);
                                                             })
                                                             ->columnSpanFull()
                                                             ->required(),

@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         FilamentAsset::register([
             Css::make('custom-stylesheet', Vite::asset('resources/css/app.css')),
-//            Js::make('custom-script', Vite::asset('resources/js/app.js')),
+            Js::make('custom-script', Vite::asset('resources/js/app.js')),
         ]);
     }
 }
