@@ -20,10 +20,10 @@ use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
 
 class TaskResource extends Resource
 {
@@ -70,10 +70,19 @@ class TaskResource extends Resource
                                                         Select::make('type')
                                                             ->label('Tips')
                                                             ->options(Type::class)
-                                                            ->extraInputAttributes(['class' => 'teeth-type'])
+                                                            ->extraInputAttributes(
+                                                                [
+                                                                    'class' => 'teeth-type',
+                                                                    'id' => 'your-select-element-id'
+                                                                ]
+                                                            )
                                                             ->reactive()
-                                                            ->afterStateUpdated(function (Get $get, Set $set) {
+                                                            ->afterStateUpdated(function (Get $get, Set $set, $livewire) {
                                                                 static::calculateTotalPrice($get, $set);
+
+                                                                $livewire->dispatch('select-updated', [
+                                                                    'selectId' => 'your-select-element-id',
+                                                                ]);
                                                             })
                                                             ->columnSpanFull()
                                                             ->required(),
@@ -132,7 +141,7 @@ class TaskResource extends Resource
                                     ->numeric()
                                     ->integer()
                                     ->minValue(0)
-                                    ->maxValue(2)
+                                    ->maxValue(5)
                                     ->step(1)
                                     ->reactive()
                                     ->default(0)
@@ -203,9 +212,7 @@ class TaskResource extends Resource
             ->defaultSort('created_at', 'desc')
             ->paginated([100, 200, 500, 'all'])
             ->defaultPaginationPageOption(100)
-            ->filters([
-
-            ])
+            ->filters([])
             ->actions([
                 Action::make('viewSections')
                     ->label('Apskatīt')
