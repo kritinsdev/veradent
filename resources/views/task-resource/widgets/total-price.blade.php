@@ -1,11 +1,22 @@
-<div class="flex gap-4">
-    <div class="border border-1 rounded p-2 text-md font-semibold">
-        Pagājušais mēnesis: € {{ $this->getPreviousMonthEarnings() }}
+<x-filament-widgets::widget>
+    <div class="flex flex-row gap-4">
+        <x-filament::section class="flex-1 flex flex-col">
+            <span class="text-sm text-gray-500 dark:text-gray-400">Previous month</span>
+            <div class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white">
+                € {{ $this->getPreviousMonthEarnings() }}
+            </div>
+        </x-filament::section>
+        <x-filament::section class="flex-1">
+            <span class="text-sm text-gray-500 dark:text-gray-400">Current month</span>
+            <div class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white">
+                € {{ $this->getThisMonthEarnings() }}
+            </div>
+        </x-filament::section>
+        <x-filament::section class="flex-1">
+            <span class="text-sm text-gray-500 dark:text-gray-400">Today</span>
+            <div class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white">
+                € {{ $this->getTodayEarnings() }}
+            </div>
+        </x-filament::section>
     </div>
-    <div class="border border-1 rounded p-2 text-md font-semibold">
-        Šomēnes: € {{ $this->getThisMonthEarnings() }}
-    </div>
-    <div class="border border-1 rounded p-2 text-md font-semibold">
-        Šodien: € {{ $this->getTodayEarnings() }}
-    </div>
-</div>
+</x-filament-widgets::widget>

@@ -11,6 +11,11 @@ class EarningsWidget extends Widget
     protected static string $view = 'task-resource.widgets.total-price';
     protected static bool $isLazy = false;
 
+    public function getColumnSpan(): int|string|array
+    {
+        return 12;
+    }
+
     public function getThisMonthEarnings(): int
     {
         $currentMonth = Carbon::now()->month;

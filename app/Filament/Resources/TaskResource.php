@@ -79,10 +79,6 @@ class TaskResource extends Resource
                                                             ->reactive()
                                                             ->afterStateUpdated(function (Get $get, Set $set, $livewire) {
                                                                 static::calculateTotalPrice($get, $set);
-
-                                                                // $livewire->dispatch('select-updated', [
-                                                                //     'selectId' => 'your-select-element-id',
-                                                                // ]);
                                                             })
                                                             ->columnSpanFull()
                                                             ->required(),

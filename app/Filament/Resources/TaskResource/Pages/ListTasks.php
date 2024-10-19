@@ -22,7 +22,6 @@ class ListTasks extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            EarningsWidget::class,
         ];
     }
 }
