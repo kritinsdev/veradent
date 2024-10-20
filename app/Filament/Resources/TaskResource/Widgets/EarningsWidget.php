@@ -45,39 +45,28 @@ class EarningsWidget extends Widget
             ->sum('total_price');
     }
 
-    public function getWeeklyAverageEarnings(): float
-    {
-        $currentYear = Carbon::now()->year;
-
-        $weeklyAverages = Task::select(
-            DB::raw('YEAR(created_at) as year'),
-            DB::raw('WEEK(created_at) as week'),
-            DB::raw('AVG(total_price) as weekly_average')
-        )
-            ->whereYear('created_at', $currentYear)
-            ->groupBy('year', 'week')
-            ->get();
-
-        $totalWeeklyAverage = $weeklyAverages->avg('weekly_average');
-
-        return number_format($totalWeeklyAverage ?? 0, 2);
-    }
-
     public function getDailyAverageEarnings(): float
     {
         $currentYear = Carbon::now()->year;
 
-        $dailyAverages = Task::select(
-            DB::raw('YEAR(created_at) as year'),
-            DB::raw('DAYOFYEAR(created_at) as day_of_year'),
-            DB::raw('AVG(total_price) as daily_average')
+        $dailyEarnings = Task::select(
+            DB::raw('DATE(created_at) as day'),
+            DB::raw('SUM(total_price) as total_earnings')
         )
             ->whereYear('created_at', $currentYear)
-            ->groupBy('year', 'day_of_year')
+            ->groupBy('day')
             ->get();
 
-        $totalDailyAverage = $dailyAverages->avg('daily_average');
+        $totalDays = $dailyEarnings->count();
 
-        return number_format($totalDailyAverage ?? 0, 2);
+        $totalEarnings = $dailyEarnings->sum('total_earnings');
+
+        if ($totalDays == 0) {
+            return 0;
+        }
+
+        $dailyAverage = $totalEarnings / $totalDays;
+
+        return number_format($dailyAverage, 2);
     }
 }
