@@ -17,6 +17,7 @@ class Task extends Model
         '3d_models',
         '3d_models_full',
         'total_price',
+        'created_at',
     ];
 
     protected $casts = [

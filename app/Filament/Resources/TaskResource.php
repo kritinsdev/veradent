@@ -8,6 +8,7 @@ use App\Enums\Type;
 use App\Filament\Resources\TaskResource\Pages;
 use App\Models\Doctor;
 use App\Models\Task;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -175,7 +176,12 @@ class TaskResource extends Resource
                                     ->label('Samaksa')
                                     ->numeric()
                                     ->suffix('€')
-                                    ->readOnly()
+                                    ->readOnly(),
+                                DateTimePicker::make('created_at')
+                                    ->label('Izveides datums')
+                                    ->seconds()
+                                    ->default(now())
+                                    ->required()
                             ])
                             ->columnSpan(3)
                     ])
