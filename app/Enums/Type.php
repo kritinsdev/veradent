@@ -30,12 +30,11 @@ enum Type: string implements HasLabel
     public function price(): int
     {
         return match ($this) {
-            self::FULL_FORM_IMPLANT => 10,
-            self::FULL_FORM_NO_IMPLANT => 7,
+            self::FULL_FORM_IMPLANT => 12,
+            self::FULL_FORM_NO_IMPLANT, self::ONLAY => 10,
             self::REDUCED_FORM_IMPLANT => 8,
             self::REDUCED_FORM_NO_IMPLANT => 5,
             self::WAX_UP => 3,
-            self::ONLAY => 7,
             self::PROTOTYPE => 2,
         };
     }
